@@ -6,8 +6,12 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.15.0",
+    "@sap-cloud-sdk/resilience": "^3.15.0",
     "@sap/cds": "^7",
-    "express": "^4"
+    "express": "^4",
+    "@sap/cds-hana": "^2",
+    "@sap/xssec": "^3"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
@@ -28,22 +32,26 @@
         "auth": {
           "kind": "mocked",
           "users": {
-              "risk.viewer@tester.sap.com": {
-                  "password": "admin",
-                  "ID": "viewer",
-                  "roles": [
-                    "RiskViewer"
-                  ]
-              },
-              "risk.manager@tester.sap.com": {
-                  "password": "admin",
-                  "ID": "manager",
-                  "roles": [
-                    "RiskManager"
-                  ]
-              }
+            "risk.viewer@tester.sap.com": {
+              "password": "admin",
+              "ID": "viewer",
+              "roles": [
+                "RiskViewer"
+              ]
+            },
+            "risk.manager@tester.sap.com": {
+              "password": "admin",
+              "ID": "manager",
+              "roles": [
+                "RiskManager"
+              ]
+            }
           }
         }
+      },
+      "[production]": {
+        "db": "hana",
+        "auth": "xsuaa"
       }
     }
   }
